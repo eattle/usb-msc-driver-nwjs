@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/eattle/usb-msc-driver-nwjs/issues"
   },
-  "homepage": "https://github.com/eattle/usb-msc-driver-nwjs"
+  "homepage": "https://github.com/eattle/usb-msc-driver-nwjs",
+  "dependencies" : {
+    "grunt": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-mocha-test": "*",
+    "riccardo": "*",
+    "lodash": "*"
+  }
 }
