@@ -1,2 +1,3 @@
 require('./host');
-require('./memoryDriver');
+require('./memoryBlockDevice');
+require('./format');
