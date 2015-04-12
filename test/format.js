@@ -80,6 +80,13 @@ describe('format', function () {
               assert.strictEqual(result[base + 15], 0x00);
             });
           });
+          it('파티션 종류는 0x0B, FAT32이어야 합니다.', function () {
+            var buffer = new Buffer(512);
+            device.readBlock(0, buffer, function (err, result) {
+              assert.strictEqual(err, null);
+              assert.strictEqual(result[base + 4], 0x0B);
+            });
+          });
         });
         describe('Eattle 파티션 엔트리', function () {
           var base = 462;
@@ -120,6 +127,13 @@ describe('format', function () {
               assert.strictEqual(result[base + 13], 0x43);
               assert.strictEqual(result[base + 14], 0x99);
               assert.strictEqual(result[base + 15], 0x3B);
+            });
+          });
+          it('파티션 종류는 0x7F, 예약된 번호이어야 합니다.', function () {
+            var buffer = new Buffer(512);
+            device.readBlock(0, buffer, function (err, result) {
+              assert.strictEqual(err, null);
+              assert.strictEqual(result[base + 4], 0x7F);
             });
           });
         });
