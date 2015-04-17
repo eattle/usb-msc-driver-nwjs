@@ -1,5 +1,4 @@
 const assert = require('assert');
-// const _ = require('lodash');
 const Riccardo = require('riccardo');
 var riccardo = new Riccardo();
 riccardo.scan('../lib', '');
