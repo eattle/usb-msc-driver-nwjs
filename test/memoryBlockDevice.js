@@ -192,7 +192,7 @@ describe('memoryBlockDevice', function () {
     it('getLastLogicalBlockAddress가 1000000000을 반환해야 합니다.', function () {
       assert.strictEqual(device.getLastLogicalBlockAddress(), 999999999);
     });
-    it('임의 번지에 쓰기, 읽기 작업을 100회 반복합니다.', function (done) {
+    it('결정적인 임의 번지에 쓰기, 읽기 작업을 100회 반복합니다.', function (done) {
       var remaining = 100;
       
       var rand = (function (seed) {
