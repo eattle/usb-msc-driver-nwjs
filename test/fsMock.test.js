@@ -16,6 +16,18 @@ describe('FsMock', function () {
       mock = new FsMock();
       assert.strictEqual(typeof mock, typeof {});
     });
+    it('/dev/disk0이 존재하지 않아야 합니다.', function (done) {
+      mock.exists('/dev/disk0', function (exists) {
+        assert.strictEqual(exists, false);
+        done();
+      });
+    });
+    it('/img/image0이 존재하지 않아야 합니다.', function (done) {
+      mock.exists('/dev/disk0', function (exists) {
+        assert.strictEqual(exists, false);
+        done();
+      });
+    });
     it('새로운 블록 파일 /dev/disk0을 엽니다.', function (done) {
       mock.open('/dev/disk0', '', function (err, fd) {
         assert.strictEqual(err, null);
@@ -30,6 +42,18 @@ describe('FsMock', function () {
         assert.strictEqual(err, null);
         assert.strictEqual(fd, 2);
         mock.setMockType('/img/image0', 'type', 'file');
+        done();
+      });
+    });
+    it('/dev/disk0이 존재해야 합니다.', function (done) {
+      mock.exists('/dev/disk0', function (exists) {
+        assert.strictEqual(exists, true);
+        done();
+      });
+    });
+    it('/img/image0이 존재해야 합니다.', function (done) {
+      mock.exists('/dev/disk0', function (exists) {
+        assert.strictEqual(exists, true);
         done();
       });
     });
@@ -49,7 +73,6 @@ describe('FsMock', function () {
         done();
       });
     });
-    it('파일 디스크립터 3에 접근 실패합니다.');
     it('/img/image0을 닫습니다.', function (done) {
       mock.close(2, function () {
         done();
@@ -60,8 +83,5 @@ describe('FsMock', function () {
         done();
       });
     });
-    it('파일 디스크립터 1에 접근 실패합니다.');
-    it('파일 디스크립터 2에 접근 실패합니다.');
-    it('파일 디스크립터 3에 접근 실패합니다.');
   });
 });

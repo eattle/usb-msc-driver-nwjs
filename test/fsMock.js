@@ -7,9 +7,9 @@ module.exports = function () {
     this.write = write;
     this.open = open;
     this.close = close;
-    this.report = report;
     this.setMockType = setMockType;
     this.stat = stat;
+    this.exists = exists;
 
     var storage = {};
     var fdInfo = {};
@@ -32,7 +32,7 @@ module.exports = function () {
 
     function read(fd, buffer, offset, length, position, callback) {
       assert(fd);
-      assert.strictEqual(typeof buffer, typeof new Buffer());
+      assert.strictEqual(typeof buffer, typeof new Buffer(1));
       assert.strictEqual(typeof offset, typeof 0);
       assert.strictEqual(typeof length, typeof 0);
       assert.strictEqual(typeof position, typeof 0);
@@ -50,12 +50,12 @@ module.exports = function () {
         }
         buffer[i] = storage[path][index];
       }
-      callback(null, buffer);
+      callback(null, 512, buffer);
     }
 
     function write(fd, buffer, offset, length, position, callback) {
       assert(fd);
-      assert.strictEqual(typeof buffer, typeof new Buffer());
+      assert.strictEqual(typeof buffer, typeof new Buffer(1));
       assert.strictEqual(typeof offset, typeof 0);
       assert.strictEqual(typeof length, typeof 0);
       assert.strictEqual(typeof position, typeof 0);
@@ -73,7 +73,7 @@ module.exports = function () {
         }
         storage[path][index] = buffer[i];
       }
-      callback(null, buffer);
+      callback(null, 512, buffer);
     }
 
     function close(fd, callback) {
@@ -88,10 +88,6 @@ module.exports = function () {
       assert.strictEqual(typeof key, typeof '');
       assert.notStrictEqual(storage[path], undefined);
       storage[path][key] = value;
-    }
-
-    function report() {
-      return null;
     }
 
     function stat(path, callback) {
@@ -122,6 +118,13 @@ module.exports = function () {
       function falseFunc() {
         return false;
       }
+    }
+
+    function exists(path, callback) {
+      assert.strictEqual(typeof path, typeof '');
+      assert.strictEqual(typeof callback, typeof function () {});
+      var result = storage[path] !== undefined;
+      callback(result);
     }
   }
 };
