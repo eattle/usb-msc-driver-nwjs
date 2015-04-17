@@ -114,6 +114,18 @@ describe('WindowedBlockDevice', function () {
     });
   });
 
+  it('장치가 주어지지 않으면 예외를 던져야 합니다.', function () {
+    assert.throws(function () {
+      new WindowedBlockDevice({ offset: 49, size: 1 });
+    });
+    assert.throws(function () {
+      new WindowedBlockDevice({ offset: 48, size: 2, device: null });
+    });
+    assert.throws(function () {
+      new WindowedBlockDevice({ offset: 47, size: 3, device: undefined });
+    });
+  });
+
   it('올바른 설정이 주어지면 성공적으로 생성되어야 합니다.', function () {
     new WindowedBlockDevice({ offset: 49, size: 1, device: new MemoryBlockDevice({ size: 50 }) });
     new WindowedBlockDevice({ offset: 48, size: 2, device: new MemoryBlockDevice({ size: 50 }) });
