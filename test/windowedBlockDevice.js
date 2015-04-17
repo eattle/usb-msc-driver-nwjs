@@ -3,7 +3,7 @@ const Riccardo = require('riccardo');
 var riccardo = new Riccardo();
 riccardo.scan('../lib', '');
 
-describe('windowedBlockDevice', function () {
+describe('WindowedBlockDevice', function () {
   const WindowedBlockDevice = riccardo.get('windowedBlockDevice');
   const MemoryBlockDevice = riccardo.get('memoryBlockDevice');
 

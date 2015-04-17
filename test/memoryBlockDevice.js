@@ -4,7 +4,7 @@ const Riccardo = require('riccardo');
 var riccardo = new Riccardo();
 riccardo.scan('../lib', '');
 
-describe('memoryBlockDevice', function () {
+describe('MemoryBlockDevice', function () {
 
   const MemoryBlockDevice = riccardo.get('memoryBlockDevice');
 
