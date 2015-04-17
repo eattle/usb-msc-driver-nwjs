@@ -18,7 +18,12 @@ describe('detector', function () {
         detector.run(device, function (err, result) {
           assert.strictEqual(err, null);
           assert.strictEqual(result, true);
-          done();
+          detector.getEattle(device, function (err, result) {
+            assert.strictEqual(err, null);
+            assert.strictEqual(result.firstLba, 40002);
+            assert.strictEqual(result.size, 25534);
+            done();
+          });
         });
       });
     });
