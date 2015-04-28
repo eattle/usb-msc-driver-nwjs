@@ -20,7 +20,7 @@ function format(path) {
     }
     var device = new FsBlockDevice({
       fd: fd,
-      lastLogicalBlockAddress: 15679487
+      lastLogicalBlockAddress: /*15679487*/ 30867455
     });
     format.formatMbr(device, 10, function (err) {
       if (err) {
@@ -29,15 +29,15 @@ function format(path) {
       console.log(err);
       format.formatEattle(device, 12, function (err) {
         console.log(err);
+        console.log('완료');
       });
     });
   });
 }
 
-// format('/dev/disk1');
+format('/dev/diskX');
 
-/*
 host.getFirstBlockDevice(function (err, result) {
   console.log(err, result);
 });
-*/
+
