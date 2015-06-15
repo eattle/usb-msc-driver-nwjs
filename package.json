@@ -18,11 +18,13 @@
   },
   "homepage": "https://github.com/eattle/usb-msc-driver-nwjs",
   "dependencies" : {
+    "riccardo": "*",
+    "lodash": "*"
+  },
+  "devDependencies": {
     "grunt": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-watch": "*",
-    "grunt-mocha-test": "*",
-    "riccardo": "*",
-    "lodash": "*"
+    "grunt-mocha-test": "*"
   }
 }
